@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+
 
 
 @WebServlet("/PagePrincipale")
@@ -51,19 +52,19 @@ public class PagePrincipale extends HttpServlet {
         String result = out.toString();
         System.out.println(result);
         
+       
         JSONParser parser = new JSONParser();
-        JSONObject json = null;
+        JSONObject jsonObject = null;
 		try {
-			json = (JSONObject) parser.parse(result);
+			jsonObject = (JSONObject) parser.parse(result);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        System.out.println(json);
+        System.out.println(jsonObject);
+        System.out.println(jsonObject.get("nomCommune"));
         
-        
-        /*// On récupère le JSON complet
-        JSONObject jsonObject = new JSONObject(result);
+        /*
         // On récupère le tableau d'objets qui nous concernent
         JSONArray array = new JSONArray(jsonObject.getString("personnes"));
         // Pour tous les objets on récupère les infos
