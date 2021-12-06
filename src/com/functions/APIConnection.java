@@ -19,7 +19,6 @@ public class APIConnection {
 
 	//Pour récup tous les enregistrements
 	public JSONArray getAllRows() throws IOException {
-		System.out.println("coucou");
         URL url = new URL(URL_GLOBALE);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.connect();

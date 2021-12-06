@@ -15,6 +15,16 @@
 		<servlet-name>Page Principale</servlet-name>
 		<url-pattern>/pagePrincipale</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Comparatif villes</servlet-name>
+		<servlet-class>com.servlets.PageComparatifVille</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Comparatif villes</servlet-name>
+		<url-pattern>/comparatif</url-pattern>
+	</servlet-mapping>
 
 
 
