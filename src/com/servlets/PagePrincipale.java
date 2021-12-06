@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.beans.Ville;
+import com.beans.Commune;
 import com.functions.APIConnection;
 import com.functions.UtilsFunction;
 
@@ -45,6 +47,15 @@ public class PagePrincipale extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		JSONObject jsonObject = (JSONObject) jsonArray.get(0);
+		//Object nomCommune = jsonObject.get("nomCommune");
+        //System.out.println(nomCommune);
+		System.out.println(jsonObject);
+        
+        List<Commune> communes = Arrays.asList(
+        		new Commune(jsonObject.get("codeCommune"), jsonObject.get("nomCommune"), jsonObject.get("codePostal"), jsonObject.get("libelle"), jsonObject.get("ligne"), jsonObject.get("latitude"), jsonObject.get("longitude")));
+        
+        request.setAttribute("communes", communes);
         
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pagePrincipale.jsp").forward(request, response);
 	}

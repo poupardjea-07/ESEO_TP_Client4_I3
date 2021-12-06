@@ -94,6 +94,38 @@
 			</div>
 		</div>
 	</footer>
+	
+	<c:forEach items="${requestScope.communes}" var="commune">
+	    <div class="col-lg-4 col-md-6">
+	      <div class="card contact-card">
+	
+	        <div class="card-body">
+	          <h5 class="card-title">
+	            <c:out value="${ commune.getLibelle() }" />
+	          </h5>
+	          <p class="card-text">
+	            <c:out value="${ commune.getCodeCommune() }" />
+	          </p>
+	          <p class="card-text">
+	            <c:out value="${ commune.getNomCommune() }" />
+	          </p>
+	          <p class="card-text">
+	            <c:out value="${ commune.getCodePostal() }" />
+	          </p>
+	          <p class="card-text">
+	            <c:out value="${ commune.getLigne() }" />
+	          </p>
+	          <p class="card-text">
+	            <c:out value="${ commune.getLongitude() }" />
+	          </p>
+	          <p class="card-text">
+	            <c:out value="${ commune.getLatitude() }" />
+	          </p>
+	        </div>
+	      </div>
+	    </div>
+
+    </c:forEach>
 
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 
