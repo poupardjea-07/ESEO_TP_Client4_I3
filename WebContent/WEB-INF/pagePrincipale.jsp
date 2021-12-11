@@ -69,64 +69,53 @@
 			<h2 class="masthead-subheading mt-lg-4 mt-3 custom-dark">test</h2>
 		</div>
 	</header>
-
-	<!--  section pour la vague 1-->
-	<section id="organigramme" fon>
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
-	        	<path fill="#EDD95B" fill-opacity="1"
-				d="M0,96L48,85.3C96,75,192,53,288,74.7C384,96,480,160,576,181.3C672,203,768,181,864,154.7C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
-	        	</path>
-	       	</svg>
-	</section>
-
-
-
-
-
-
-
-	<footer class="bg-custom-dark">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<h4 class="pb-3 pt-3 custom-yellow">TEST</h4>
-				</div>
-			</div>
-		</div>
-	</footer>
 	
-	<c:forEach items="${requestScope.communes}" var="commune">
-	    <div class="col-lg-4 col-md-6">
-	      <div class="card contact-card">
-	
-	        <div class="card-body">
-	          <h5 class="card-title">
-	            <c:out value="${ commune.getLibelle() }" />
-	          </h5>
-	          <p class="card-text">
-	            <c:out value="${ commune.getCodeCommune() }" />
-	          </p>
-	          <p class="card-text">
-	            <c:out value="${ commune.getNomCommune() }" />
-	          </p>
-	          <p class="card-text">
-	            <c:out value="${ commune.getCodePostal() }" />
-	          </p>
-	          <p class="card-text">
-	            <c:out value="${ commune.getLigne() }" />
-	          </p>
-	          <p class="card-text">
-	            <c:out value="${ commune.getLongitude() }" />
-	          </p>
-	          <p class="card-text">
-	            <c:out value="${ commune.getLatitude() }" />
-	          </p>
-	        </div>
-	      </div>
+	    <div class="container">
+	    	<h1>Liste des communes</h1>
+			      <table class="table table-hover">
+				        <thead>
+					          <tr>
+						            <th>Libelle</th>
+						            <th>Code commune</th>
+						            <th>Nom commune</th>
+						            <th>Code postal</th>
+						            <th>Ligne</th>
+						            <th>Longitude</th>
+						            <th>Latitude</th>
+					          </tr>
+				        </thead>
+				        <tbody>
+				        	<c:forEach items="${requestScope.communes}" var="commune">
+					          	<tr data-href="/ESEO_TP_Client4_I3/editDonneesVille?code=${ commune.getCodeCommune()}">
+						            <td><c:out value="${ commune.getLibelle() }" /></td>
+						            <td><a href="/ESEO_TP_Client4_I3/editDonneesVille?code=${ commune.getCodeCommune()}"><c:out value="${ commune.getCodeCommune() }" /></a></td>
+						            <td><c:out value="${ commune.getNomCommune() }" /></td>
+						            <td><c:out value="${ commune.getCodePostal() }" /></td>
+						            <td><c:out value="${ commune.getLigne() }" /></td>
+						            <td><c:out value="${ commune.getLongitude() }" /></td>
+						            <td><c:out value="${ commune.getLatitude() }" /></td>
+					          	</tr>
+					        </c:forEach>
+				        </tbody> 
+			      </table>
 	    </div>
+	    
+	     <ul class="pagination">
+		    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+		    <li class="page-item"><a class="page-link" href="#">1</a></li>
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+		 </ul>
 
-    </c:forEach>
-
+	<script>
+	$(function(){       
+	    $('*[data-href]').click(function(){
+	        window.location = $(this).data('href');
+	        return false;
+	    });
+	});
+	</script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 
 </body>
