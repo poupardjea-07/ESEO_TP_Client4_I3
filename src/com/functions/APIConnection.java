@@ -12,9 +12,9 @@ import org.json.simple.parser.ParseException;
 
 public class APIConnection {
 	
-	private String URL_GLOBALE = "http://localhost:8181/villes";
-	private String URL_ONE_VILLE_CODE = "http://localhost:8181/villes/codeCommune";
-	private String URL_ONE_VILLE_NOUN = "http://localhost:8181/villes/nomCommune";
+	private String URL_GLOBALE = "http://localhost:8182/villes";
+	private String URL_ONE_VILLE_CODE = "http://localhost:8182/villes/codeCommune";
+	private String URL_ONE_VILLE_NOUN = "http://localhost:8182/villes/nomCommune";
 	
 
 	//Pour récup tous les enregistrements

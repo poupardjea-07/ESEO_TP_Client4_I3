@@ -1,9 +1,6 @@
 package com.servlets;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,13 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import com.beans.Ville;
 import com.beans.Commune;
 import com.functions.APIConnection;
-import com.functions.UtilsFunction;
 
 
 
