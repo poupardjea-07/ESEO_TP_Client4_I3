@@ -71,11 +71,23 @@ public class PageEditDonneesVille extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		if(request.getParameter("Modifier") != null) {
+		
+		if(request.getParameter("modifier") != null) {
 			ModifierVilleForm form = new ModifierVilleForm();
 			form.modifVille(request);
 		}
+		
+		APIConnection apiConnection = new APIConnection();
+		JSONArray jsonArray = new JSONArray();
+		try {
+			jsonArray = apiConnection.getAllRows();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		UtilsFunction utils = new UtilsFunction();
+		List<Ville> communes = utils.convertJsonArrayToListVille(jsonArray);
+		
+		request.setAttribute("communes", communes);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pagePrincipale.jsp").forward(request, response);
 	}
