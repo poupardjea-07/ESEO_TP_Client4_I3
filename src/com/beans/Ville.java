@@ -10,6 +10,19 @@ public class Ville {
 	private String latitude;
 	private String longitude;
 	
+	public Ville(String codeCommune, String nomCommune, String codePostal, String libelle, String ligne, String latitude, String longitude) {
+		this.codeCommune=codeCommune;
+		this.nomCommune=nomCommune;
+		this.codePostal=codePostal;
+		this.libelle=libelle;
+		this.ligne=ligne;
+		this.latitude=latitude;
+		this.longitude=longitude;
+	}
+	
+	public Ville() {
+		
+	}
 	
 	public String getCodeCommune() {
 		return codeCommune;

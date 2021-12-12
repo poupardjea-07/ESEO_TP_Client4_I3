@@ -40,13 +40,16 @@ public class PagePrincipale extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		JSONObject jsonObject = (JSONObject) jsonArray.get(0);
+		//JSONObject jsonObject = (JSONObject) jsonArray.get(0);
 		//Object nomCommune = jsonObject.get("nomCommune");
         //System.out.println(nomCommune);
-		System.out.println(jsonObject);
+		//System.out.println(jsonObject);
+		
+		UtilsFunction utils = new UtilsFunction();
+		List<Ville> communes = utils.convertJsonArrayToListVille(jsonArray);	
         
-        List<Commune> communes = Arrays.asList(
-        		new Commune(jsonObject.get("codeCommune"), jsonObject.get("nomCommune"), jsonObject.get("codePostal"), jsonObject.get("libelle"), jsonObject.get("ligne"), jsonObject.get("latitude"), jsonObject.get("longitude")));
+        /*List<Commune> communes = Arrays.asList(
+        		new Commune(jsonObject.get("codeCommune"), jsonObject.get("nomCommune"), jsonObject.get("codePostal"), jsonObject.get("libelle"), jsonObject.get("ligne"), jsonObject.get("latitude"), jsonObject.get("longitude")));*/
         
         request.setAttribute("communes", communes);
         

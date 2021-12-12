@@ -25,6 +25,16 @@
 		<servlet-name>Comparatif villes</servlet-name>
 		<url-pattern>/comparatif</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Editer donnes ville</servlet-name>
+		<servlet-class>com.servlets.PageEditDonneesVille</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Editer donnes ville</servlet-name>
+		<url-pattern>/editDonneesVille</url-pattern>
+	</servlet-mapping>
 
 
 
