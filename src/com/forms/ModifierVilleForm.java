@@ -20,6 +20,8 @@ public class ModifierVilleForm {
 		
 		Ville ville = new Ville(codeCommune, nomCommune, codePostal, longitude, latitude, libelle, ligne);
 		
+		System.out.println(ville);
+		
 		APIConnection apiConnection = new APIConnection();
 		JSONObject jsonObject = new JSONObject();
 		
