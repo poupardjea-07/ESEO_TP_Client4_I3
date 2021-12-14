@@ -8,20 +8,20 @@
 </head>
 <body>
 	<h1>Modifier les informations de la ville</h1>
-	<form action="editerDonneesVille?code=${ ville.codeCommune }" method="post">
-		<input type=text size=50 id=codeCommune disabled="disabled" value="${ ville.codeCommune }">
+	<form action="editDonneesVille" method="post">
+		<input type="text" size="50" id="codeCommune" name="codeCommune" disabled="disabled" value="${ ville.codeCommune }">
 		<p>Nom commune :</p>
-		<input type=text size=50 id=nomCommune value="${ ville.nomCommune }">
+		<input type="text" size="50" id="nomCommune" name="nomCommune" value="${ ville.nomCommune }">
 		<p>Code postal :</p>
-		<input type=text id=codePostal value="${ ville.codePostal }">
+		<input type="text" id="codePostal" name="codePostal" value="${ ville.codePostal }">
 		<p>Latitude :</p>
-		<input type=text id=latitude value="${ ville.latitude }">
+		<input type="text" id="latitude" name="latitude" value="${ ville.latitude }">
 		<p>Longitude :</p>
-		<input type=text id=longitude value="${ ville.longitude }">
+		<input type="text" id="longitude" name="longitude" value="${ ville.longitude }">
 		<p>Libelle :</p>
-		<input type=text size=50 id=libelle value="${ ville.libelle }">
+		<input type="text" size="50" id="libelle" name="libelle" value="${ ville.libelle }">
 		<p>Ligne :</p>
-		<input type=text id=ligne value="${ ville.ligne }">
+		<input type="text" id="ligne" name="ligne" value="${ ville.ligne }">
 		<br>
 		<br>
 		<input type=submit value="Modifier">      
