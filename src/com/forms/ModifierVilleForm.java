@@ -9,7 +9,9 @@ import com.functions.APIConnection;
 
 public class ModifierVilleForm {
 
-	public void modifVille(HttpServletRequest request) {
+	public Boolean modifVille(HttpServletRequest request) {
+		
+		System.out.println("modifVille");
 		String codeCommune = request.getParameter("codeCommune");
 		String nomCommune = request.getParameter("nomCommune");
 		String codePostal = request.getParameter("codePostal");
@@ -18,12 +20,11 @@ public class ModifierVilleForm {
 		String libelle = request.getParameter("libelle");
 		String ligne = request.getParameter("ligne");
 		
-		Ville ville = new Ville(codeCommune, nomCommune, codePostal, longitude, latitude, libelle, ligne);
+		Ville ville = new Ville("01002", nomCommune, codePostal, longitude, latitude, libelle, ligne);
 		
-		System.out.println(ville);
 		
 		APIConnection apiConnection = new APIConnection();
-		JSONObject jsonObject = new JSONObject();
+		return apiConnection.updateOneVille(ville);
 		
 	}
 }

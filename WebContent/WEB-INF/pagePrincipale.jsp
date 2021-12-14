@@ -144,7 +144,7 @@
 
         function printRows(arr) {
             arr.forEach(element => {
-                $(".page-data").append("<tr><td>" + element.ville + "</td><td>" + element.code + "</td><td>" + element.codeP + "</td><td>" + element.longitude + "</td><td>" + element.latitude + "</td></tr>");
+                $(".page-data").append("<tr><td>" + element.ville + "</td><td><a href='/ESEO_TP_Client4_I3/editDonneesVille?code="+element.code+"''>" + element.code + "</a></td><td>" + element.codeP + "</td><td>" + element.longitude + "</td><td>" + element.latitude + "</td></tr>");
 
             });
         }

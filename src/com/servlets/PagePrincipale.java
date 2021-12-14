@@ -1,7 +1,6 @@
 package com.servlets;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,10 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-import com.beans.Commune;
+import com.beans.Ville;
+import com.forms.ModifierVilleForm;
 import com.functions.APIConnection;
+import com.functions.UtilsFunction;
 
 
 
@@ -32,6 +32,7 @@ public class PagePrincipale extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		APIConnection apiConnection = new APIConnection();
 		JSONArray jsonArray = new JSONArray();
 		try {
@@ -39,17 +40,10 @@ public class PagePrincipale extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		//JSONObject jsonObject = (JSONObject) jsonArray.get(0);
-		//Object nomCommune = jsonObject.get("nomCommune");
-        //System.out.println(nomCommune);
-		//System.out.println(jsonObject);
 		
 		UtilsFunction utils = new UtilsFunction();
-		List<Ville> communes = utils.convertJsonArrayToListVille(jsonArray);	
-        
-        /*List<Commune> communes = Arrays.asList(
-        		new Commune(jsonObject.get("codeCommune"), jsonObject.get("nomCommune"), jsonObject.get("codePostal"), jsonObject.get("libelle"), jsonObject.get("ligne"), jsonObject.get("latitude"), jsonObject.get("longitude")));*/
+		List<Ville> communes = utils.convertJsonArrayToListVille(jsonArray);
+		System.out.println("doget principal");
         
         request.setAttribute("communes", communes);
         
@@ -60,6 +54,8 @@ public class PagePrincipale extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pagePrincipale.jsp").forward(request, response);
 	}
 

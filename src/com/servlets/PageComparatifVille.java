@@ -57,7 +57,7 @@ public class PageComparatifVille extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pagePrincipale.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/comparatif.jsp").forward(request, response);
 	}
 
 }
