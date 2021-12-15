@@ -1,5 +1,7 @@
 package com.forms;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
@@ -23,7 +25,11 @@ public class ModifierVilleForm {
 		System.out.println(ville);
 		
 		APIConnection apiConnection = new APIConnection();
-		JSONObject jsonObject = new JSONObject();
+		try {
+			apiConnection.sendJSONtoModifyVille(ville);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
