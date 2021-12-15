@@ -58,18 +58,109 @@
 		</div>
 	</nav>
 
-	<!--  header, titre principal -->
-
-	<header class="masthead text-white text-center bg-custom-yellow">
-		<div class="container d-flex align-items-center flex-column">
-			<h1 class="masthead-heading text-uppercase mb-lg-5 mb-3 custom-dark">test</h1>
-
-			<hr class="custom-dark"
-				style="height: 4px; width: 7%; opacity: 1; margin: auto;">
-			<h2 class="masthead-subheading mt-lg-4 mt-3 custom-dark">test</h2>
-		</div>
-	</header>
 	
+	<section>
+	
+		<table class="table">
+	        <thead>
+	            <tr>
+	                <th scope="col">Libelle</th>
+	                <th scope="col">Code commune</th>
+	                <th scope="col">Code postal</th>
+	                <th scope="col">Longitude</th>
+	                <th scope="col">Latitude</th>
+	            </tr>
+	        </thead>
+	        <tbody class="page-data">
+	
+	
+	        </tbody>
+	    </table>
+	    <nav aria-label="Page navigation example">
+	        <ul class="pagination">
+	            <li onclick="prePage()" class="page-item page-list">
+	                <a class="page-link" href="#" aria-label="Previous">
+	                    <span aria-hidden="true">&laquo; Précédent</span>
+	                    <span class="sr-only">Previous</span>
+	                </a>
+	            </li>
+	
+	            <li onclick="nextPage()" class="page-item">
+	                <a class="page-link" href="#" aria-label="Next">
+	                    <span aria-hidden="true">Suivant &raquo;</span>
+	                    <span class="sr-only">Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </nav>
+	
+	</section>
+	
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		villeData = [];
+	</script>
+	<c:forEach items="${requestScope.communes}" var="ville">
+		<script>
+			json = '{"ville": "${ville.nomCommune}", "code": "${ville.codeCommune}","codeP": "${ville.codePostal}", "longitude": "${ville.longitude}", "latitude": "${ville.latitude}"}'
+			villeData.push(JSON.parse(json))		
+			</script>
+    </c:forEach>
+	<script>
+        console.log(villeData);
+        var currentPage = 0;
+        let pages = "";
+        let page_size = 15;
+        pages = paginate(villeData, page_size);
+        pageLi = "";
+        pages.forEach((element, index) => {
+            if (index != 0)
+                pageLi += '<li onclick="pageChange(' + index + ')" id="page_' + index + '" class="page-item list-item" id="page_' + index + '"><a class="page-link" href="javascript:void(0)">' + index + '</a></li>';
+        });
+        $(".page-list").after(pageLi);
+        page = pages[currentPage];
+        printRows(page);
+
+        function nextPage() {
+            if (pages.length - 1 > currentPage)
+                page = currentPage + 1;
+            pageChange(page);
+        }
+
+        function prePage() {
+            if (currentPage < pages.length && currentPage != 0)
+                page = currentPage - 1;
+            pageChange(page);
+        }
+
+        function pageChange(page) {
+            currentPage = page;
+            $(".list-item").removeClass("active");
+            $("#page_" + page).addClass("active");
+            $(".page-data").html("");
+            page = pages[page];
+            printRows(page);
+        }
+
+        function printRows(arr) {
+            arr.forEach(element => {
+                $(".page-data").append("<tr><td>" + element.ville + "</td><td><a href='/ESEO_TP_Client4_I3/editDonneesVille?code="+element.code+"''>" + element.code + "</a></td><td>" + element.codeP + "</td><td>" + element.longitude + "</td><td>" + element.latitude + "</td></tr>");
+
+            });
+        }
+
+        function paginate(arr, size) {
+            return arr.reduce((acc, val, i) => {
+                let idx = Math.floor(i / size)
+                let page = acc[idx] || (acc[idx] = [])
+                page.push(val)
+                return acc
+            }, [])
+        }
+    </script>
+	
+	
+	<!-- 
 	    <div class="container">
 	    	<h1>Liste des communes</h1>
 			      <table class="table table-hover">
@@ -98,15 +189,7 @@
 					        </c:forEach>
 				        </tbody> 
 			      </table>
-	    </div>
-	    
-	     <ul class="pagination">
-		    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-		    <li class="page-item"><a class="page-link" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-		 </ul>
+	    </div> -->
 
 	<script>
 	$(function(){       

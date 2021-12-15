@@ -11,7 +11,7 @@ import com.beans.Ville;
 public class UtilsFunction {
 
 	public List<Ville> convertJsonArrayToListVille(JSONArray jsonArray){
-		System.out.println("rentre");
+		System.out.println("rentre dbzjqkdbkjq");
 		List<Ville> villes = new ArrayList<Ville>();
 		
 		for(Object object : jsonArray) {

@@ -1,10 +1,12 @@
 package com.functions;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.net.http.HttpClient;
 
@@ -22,8 +24,8 @@ public class APIConnection {
 	private String URL_ONE_VILLE_CODE = "http://localhost:8181/villes/codeCommune";
 	private String URL_ONE_VILLE_NOUN = "http://localhost:8181/villes/nomCommune";
 	
-
-	//Pour récup tous les enregistrements
+	
+	//Pour rï¿½cup tous les enregistrements
 	public JSONArray getAllRows() throws IOException {
         URL url = new URL(URL_GLOBALE);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -59,45 +61,62 @@ public class APIConnection {
 		return null;
 	}
 	
-	public void sendJSONtoModifyVille(Ville ville) throws IOException {
+	public Boolean updateOneVille(Ville ville) {
+		System.out.println("update ville ");
+		String responseStr=null;
+	    //make POST request
 		
-		String codeCommune = ville.getCodeCommune();
-		String nom = ville.getNomCommune();
-		String codePostal = ville.getCodePostal();
-		String latitude = ville.getCodeCommune();
-		String longitude = ville.getCodeCommune();
-		String libelle = ville.getCodeCommune();
-		String ligne = ville.getLigne();
-		
-		System.out.println("je vais modifier...");
-		
-		URI uri = null;
-		try {
-			System.out.println("testURI");
-			uri = new URI(
-				      "http", 
-				      "localhost:8181", 
-				      "/ville?codeCommune="+codeCommune+"&nom="+nom+"&cp="+codePostal+"&libelle="+libelle+"&ligne="+ligne+"&latitude="+latitude+"&longitude="+longitude);
-		} catch (URISyntaxException e) {
+	    String jsonContent = "{\"codeCommune\": \""+ville.getCodeCommune()+"\",\"nomCommune\": \""+ville.getNomCommune()+"\",\"codePostal\": \""+ville.getCodePostal()+"\",\"libelle\": \""+ville.getLibelle()+"\",\"ligne\": \""+ville.getLigne()+"\",\"latitude\": \""+ville.getLatitude()+"\",\"longitude\": \""+ville.getLongitude()+"\"}";
+	    System.out.println(jsonContent);
+	    try {
+	    	
+	    	URL url = new URL(URL_GLOBALE);
+		    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		    
+	    	connection.setDoOutput(true);
+		    connection.setDoInput(true);
+		    connection.setInstanceFollowRedirects(false);
+			connection.setRequestMethod("PUT");
+			connection.setRequestProperty("Content-Type", "application/json");
+		    connection.setRequestProperty("charset", "utf-8");
+		    connection.setRequestProperty("Content-Length", "" + Integer.toString(jsonContent.getBytes().length));
+		    connection.setUseCaches(false);
+		    OutputStreamWriter writer;
+		    writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
+		    
+		    
+		    writer.write(jsonContent);       
+		    writer.close();
+		    responseStr="Response code: "+connection.getResponseCode()+" and mesg:"+connection.getResponseMessage();
+
+		    System.out.println(connection.getResponseMessage());
+
+		    InputStream response;       
+		    
+		    if(connection.getResponseCode() == 200){
+		        response = connection.getInputStream();
+		        System.out.println("update ok");
+		        connection.disconnect();
+		        return true;
+		    }else{
+		        response = connection.getErrorStream();
+		        System.out.println("update error");
+		        connection.disconnect();
+		        return false;
+		    }
+		    
+		} catch (ProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		URL url = uri.toURL();
-		
-		//URL url = new URL("http://127.0.0.1:8181/ville?codeCommune="+codeCommune+"&nom="+nom+"&cp="+codePostal+"&libelle="+libelle+"&ligne="+ligne+"&latitude="+latitude+"&longitude="+longitude);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("PUT");
-		conn.setRequestProperty("Accept", "application/json");
-					
-		if (conn.getResponseCode() != 200) {
-			throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-		}
-		
-		System.out.println("Output from Server .... \n");			
-
-		conn.disconnect();
-
-    }
-
+	    
+	    return false;
+	    
+	}
+	
 
 	
 }

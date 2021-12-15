@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>Modifier les informations de la ville</h1>
+
 	<form method="post" action="editDonneesVille">
 		<input type="text" size="50" id="codeCommune" name="codeCommune" disabled="disabled" value="${ ville.codeCommune }"/>
 		<p>Nom commune :</p>

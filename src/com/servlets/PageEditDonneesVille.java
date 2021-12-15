@@ -37,6 +37,7 @@ public class PageEditDonneesVille extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
 		String code;
 		code = request.getParameter("code");
 		
@@ -61,7 +62,7 @@ public class PageEditDonneesVille extends HttpServlet {
 				ville.setLigne((jsonObject).get("ligne").toString());
 			}
 		}
-		
+		System.out.println("doget EDIT");
 		request.setAttribute("ville", ville);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/editDonneesVille.jsp").forward(request, response);
@@ -72,10 +73,13 @@ public class PageEditDonneesVille extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(request.getParameter("modifier") != null) {
+		
+		
+		/*if(request.getParameter("modifier") != null) {
+			System.out.println(request.getParameter("nomCommune"));
 			ModifierVilleForm form = new ModifierVilleForm();
 			form.modifVille(request);
-		}
+		}*/
 		
 		APIConnection apiConnection = new APIConnection();
 		JSONArray jsonArray = new JSONArray();
@@ -86,6 +90,16 @@ public class PageEditDonneesVille extends HttpServlet {
 		}
 		UtilsFunction utils = new UtilsFunction();
 		List<Ville> communes = utils.convertJsonArrayToListVille(jsonArray);
+		
+		System.out.println("dopost");
+		System.out.println(request.getParameter("nomCommune"));
+		ModifierVilleForm form = new ModifierVilleForm();
+		if(form.modifVille(request)) {
+			System.out.println("oui");
+		}
+		else {
+			System.out.println("non");
+		}
 		
 		request.setAttribute("communes", communes);
 		
