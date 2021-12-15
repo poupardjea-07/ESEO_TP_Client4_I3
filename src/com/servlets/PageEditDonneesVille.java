@@ -103,7 +103,9 @@ public class PageEditDonneesVille extends HttpServlet {
 		
 		request.setAttribute("communes", communes);
 		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pagePrincipale.jsp").forward(request, response);
+		response.sendRedirect("/ESEO_TP_Client4_I3/pagePrincipale");
+		
+		//this.getServletContext().getRequestDispatcher("/WEB-INF/pagePrincipale.jsp").forward(request, response);
 	}
 
 }

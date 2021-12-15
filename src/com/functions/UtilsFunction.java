@@ -19,12 +19,12 @@ public class UtilsFunction {
 			if (object instanceof JSONObject) {
 				JSONObject jsonObject = (JSONObject) object;
 				ville.setCodeCommune((jsonObject).get("codeCommune").toString());
-				ville.setCodePostal(( jsonObject).get("codePostal").toString());
-				ville.setNomCommune(( jsonObject).get("nomCommune").toString());
-				ville.setLatitude((   jsonObject).get("latitude").toString());
-				ville.setLongitude((  jsonObject).get("longitude").toString());
-				ville.setLibelle((    jsonObject).get("libelle").toString());
-				ville.setLigne((      jsonObject).get("ligne").toString());
+				ville.setCodePostal((jsonObject).get("codePostal").toString());
+				ville.setNomCommune((jsonObject).get("nomCommune").toString());
+				ville.setLatitude((jsonObject).get("latitude").toString());
+				ville.setLongitude((jsonObject).get("longitude").toString());
+				ville.setLibelle((jsonObject).get("libelle").toString());
+				ville.setLigne((jsonObject).get("ligne").toString());
 			
 			}
 			

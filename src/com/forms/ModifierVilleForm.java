@@ -22,7 +22,7 @@ public class ModifierVilleForm {
 		String libelle = request.getParameter("libelle");
 		String ligne = request.getParameter("ligne");
 		
-		Ville ville = new Ville("01002", nomCommune, codePostal, longitude, latitude, libelle, ligne);
+		Ville ville = new Ville(codeCommune, nomCommune, codePostal, longitude, latitude, libelle, ligne);
 		
 		
 		APIConnection apiConnection = new APIConnection();
