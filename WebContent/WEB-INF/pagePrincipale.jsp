@@ -16,6 +16,7 @@
 	rel="stylesheet" type="text/css" />
 <!-- Import bootstrap et css -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="style/style.css" />
 </head>
 
 <body>
@@ -76,12 +77,17 @@
 	
 	        </tbody>
 	    </table>
-	    <nav aria-label="Page navigation example">
-	        <ul class="pagination">
+	    <nav aria-label="Page navigation">
+	        <ul class="pagination flex-wrap">
 	            <li onclick="prePage()" class="page-item page-list">
 	                <a class="page-link" href="#" aria-label="Previous">
 	                    <span aria-hidden="true">&laquo; Précédent</span>
 	                    <span class="sr-only">Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item page-list mid">
+	                <a class="page-link" href="#" aria-label="mid">
+	                    <span aria-hidden="true">...</span>
 	                </a>
 	            </li>
 	
@@ -95,7 +101,7 @@
 	    </nav>
 	
 	</section>
-	
+		<script src="bootstrap/librairies.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script>
 		villeData = [];
@@ -107,7 +113,6 @@
 			</script>
     </c:forEach>
 	<script>
-        console.log(villeData);
         var currentPage = 0;
         let pages = "";
         let page_size = 15;
@@ -157,6 +162,7 @@
                 return acc
             }, [])
         }
+        
     </script>
 	
 	
