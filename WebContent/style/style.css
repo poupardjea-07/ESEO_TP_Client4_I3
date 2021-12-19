@@ -23,6 +23,13 @@ body
     -webkit-overflow-scrolling: touch;
 }
 
+.btn{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
 *[data-href] {
     cursor: pointer;
 }
